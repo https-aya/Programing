@@ -3,7 +3,7 @@
 //ƒV[ƒ“î•ñ
 enum eSceneType
 {
-	E_title,
+	E_TITLE,
 	E_MAIN,
 	E_HELP,
 	E_RANKING_DISP,
