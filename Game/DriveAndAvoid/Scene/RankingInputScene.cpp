@@ -106,16 +106,19 @@ void RankingInputScene::Draw() const
 		}
 		else
 		{
-			DrawBox(0, 0, font_size, font_size,
+			DrawBox(85, 400, 85 + font_size * 2, 400 + font_size,
 				GetColor(255, 255, 255), FALSE);
 		}
 	}
+	DrawFormatString(10, 10, 0xffffff, "cursor_x:%d", cursor_x);
+	DrawFormatString(10, 25, 0xffffff, "cursor_y:%d", cursor_y);
+	DrawFormatString(10, 40, 0xffffff, "name_num:%d", name_num);
 }
 
 //終了時処理
 void RankingInputScene::Finalize()
 {
-	//ラン金gにデータを格納
+	//ランキングにデータを格納
 	ranking->SetRankingData(score, name);
 
 	//読み込んだ画像を削除
@@ -205,7 +208,10 @@ bool RankingInputScene::InputName()
 			}
 			else
 			{
-				name[name_num--] = NULL;
+				if (name_num > 0)
+				{
+					name[name_num--] = NULL;
+				}
 			}
 		}
 	}
