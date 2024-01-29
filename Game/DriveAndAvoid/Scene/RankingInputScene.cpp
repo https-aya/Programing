@@ -32,7 +32,7 @@ void RankingInputScene::Initialize()
 	//リザルトデータを取得する
 	FILE* fp = nullptr;
 	//ファイルオープン
-	errno_t result = fopen_s(&fp, "Resource/dat/result_dat.csv", "r");
+	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "r");
 
 	//エラーチェック
 	if (result != 0)
@@ -82,10 +82,10 @@ void RankingInputScene::Draw() const
 	for (int i = 0; i < 26; i++)
 	{
 		int x = (i % 13) * font_size + 15;
-		int y = (i / 13) + font_size + 300;
-		DrawFormatString(x, y, GetColor(255, 255, 255), "%-3c", 'a' + 1);
+		int y = (i / 13) * font_size + 300;
+		DrawFormatString(x, y, GetColor(255, 255, 255), "%-3c", 'a' + i);
 		y = ((i / 13) + 2) * font_size + 300;
-		DrawFormatString(x, y, GetColor(255, 255, 255), "%-3c", 'A' + 1);
+		DrawFormatString(x, y, GetColor(255, 255, 255), "%-3c", 'A' + i);
 	}
 	DrawString(40, 405, "決定", GetColor(255, 255, 255));
 	DrawString(40 + font_size * 2, 405, "消す", GetColor(255, 255, 255));

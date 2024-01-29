@@ -4,12 +4,12 @@
 Barrier::Barrier() :image(NULL), life_span(1000)
 {
 	//画像の読込み
-	image = LoadGraph("Resource/images/barrier.ping");
+	image = LoadGraph("Resource/images/barrier.png");
 
 	//エラーチェック
 	if (image == -1)
 	{
-		throw("Resource/images/barrier.pingがありません\n");
+		throw("Resource/images/barrier.pngがありません\n");
 	}
 }
 

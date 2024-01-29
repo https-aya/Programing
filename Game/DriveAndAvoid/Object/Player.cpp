@@ -26,12 +26,12 @@ void Player::Initialize()
 	barrier_count = 3;
 
 	//画僧の読込み
-	image = LoadGraph("Resource/images/car1po1.bmp");
+	image = LoadGraph("Resource/images/car1pol.bmp");
 
 	//エラーチェック
 	if (image == -1)
 	{
-		throw("Resource/images/car1po1.bmpがありません\n");
+		throw("Resource/images/car1pol.bmpがありません\n");
 	}
 }
 
@@ -51,7 +51,7 @@ void Player::Update()
 	}
 
 	//燃料の消費
-	fuel -= speed;
+	fuel -= speed*10;
 
 	//移動処理
 	Movement();
@@ -181,7 +181,7 @@ void Player::Movement()
 	if (InputControl::GetButton(XINPUT_BUTTON_DPAD_RIGHT))
 	{
 		move += Vector2D(1.0f, 0.0f);
-		angle = -DX_PI_F / 18;
+		angle = DX_PI_F / 18;
 	}
 	if (InputControl::GetButton(XINPUT_BUTTON_DPAD_UP))
 	{

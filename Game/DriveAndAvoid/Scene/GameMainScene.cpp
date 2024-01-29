@@ -26,7 +26,7 @@ void GameMainScene::Initialize()
 
 	//画像の読込み
 	back_ground = LoadGraph("Resource/images/back.bmp");
-	barrier_image = LoadGraph("Resource/images/barrier.ping");
+	barrier_image = LoadGraph("Resource/images/barrier.png");
 	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120,
 		enemy_image);
 
@@ -41,7 +41,7 @@ void GameMainScene::Initialize()
 	}
 	if (barrier_image == -1)
 	{
-		throw("Resource/images/barrier.bmpがありません/n");
+		throw("Resource/images/barrier.pngがありません/n");
 	}
 
 	//オブジェクトの生成
@@ -145,7 +145,7 @@ void GameMainScene::Draw() const
 	DrawFormatString(510, 80, GetColor(0, 0, 0), "よけた敵");
 	for (int i = 0; i < 3; i++)
 	{
-		DrawRotaGraph(523 + (i * 50), 120, 0, 3, 0, enemy_image[i], TRUE,
+		DrawRotaGraph(523 + (i * 50), 120, 0.3, 0, enemy_image[i], TRUE,
 			FALSE);
 		DrawFormatString(510 + (i * 50), 140, GetColor(255, 255, 255), "%03d",
 			enemy_count[i]);
@@ -163,7 +163,15 @@ void GameMainScene::Draw() const
 
 	//燃料ゲージの描画
 	float fx = 510.0f;
-	float fy = 430.0f;
+	float fy = 390.0f;
+	DrawFormatStringF(fx, fy, GetColor(0, 0, 0), "FUEL METER");
+	DrawBoxAA(fx, fy + 20.0f, fx + (player->GetFuel() * 100 / 20000), fy + 40.0f,
+		GetColor(0, 102, 204), TRUE);
+	DrawBoxAA(fx, fy + 20.0f, fx + 100.0f, fy + 40.0f, GetColor(0, 0, 0), FALSE);
+
+	//体力ゲージの描画
+	fx = 510.0f;
+	fy = 430.0f;
 	DrawFormatStringF(fx, fy, GetColor(0, 0, 0), "PLAYER HP");
 	DrawBoxAA(fx, fy + 20.0f, fx + (player->GetHp() * 100 / 1000), fy + 40.0f,
 		GetColor(255, 0, 0), TRUE);
@@ -183,7 +191,7 @@ void GameMainScene::Finalize()
 	//リザルトデータの書き込み
 	FILE* fp = nullptr;
 	//ファイルオープン
-	errno_t result = fopen_s(&fp, "Resource/dat/result_date.csv", "w");
+	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "w");
 
 	//エラーチェック
 	if (result != 0)
@@ -192,6 +200,9 @@ void GameMainScene::Finalize()
 	}
 
 	//スコアを保存
+	fprintf(fp, "%d,\n", score);
+
+	//よけた敵と得点を保存
 	for (int i = 0; i < 3; i++)
 	{
 		fprintf(fp, "%d\n", enemy_count[i]);
