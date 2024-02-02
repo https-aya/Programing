@@ -207,7 +207,8 @@ bool RankingInputScene::InputName()
 			{
 				if (name_num > 0)
 				{
-					name[name_num--] = NULL;
+					name_num--;
+					name[name_num] = NULL;
 				}
 			}
 		}
