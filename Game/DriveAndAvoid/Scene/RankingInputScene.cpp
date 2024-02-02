@@ -75,7 +75,7 @@ void RankingInputScene::Draw() const
 
 	//–¼‘O“ü—Íx•¶š—ñ‚Ì•`‰æ
 	DrawString(150, 100, "ƒ‰ƒ“ƒLƒ“ƒO‚É“o˜^‚µ‚Ü‚·", 0xffffff);
-	DrawFormatString(100, 220, GetColor(255, 255, 255), ".%s", name);
+	DrawFormatString(100, 220, GetColor(255, 255, 255), ">%s", name);
 
 	//‘I‘ğ—p•¶š‚ğ•`‰æ
 	const int font_size = 25;
@@ -110,9 +110,6 @@ void RankingInputScene::Draw() const
 				GetColor(255, 255, 255), FALSE);
 		}
 	}
-	DrawFormatString(10, 10, 0xffffff, "cursor_x:%d", cursor_x);
-	DrawFormatString(10, 25, 0xffffff, "cursor_y:%d", cursor_y);
-	DrawFormatString(10, 40, 0xffffff, "name_num:%d", name_num);
 }
 
 //I—¹ˆ—

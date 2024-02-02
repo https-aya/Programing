@@ -68,7 +68,7 @@ void RankingData::SetRankingData(int score, const char* name)
 //スコア取得処理
 int RankingData::GetScore(int value) const
 {
-	return rank[value];
+	return score[value];
 }
 
 //ランク取得処理
@@ -89,7 +89,7 @@ void RankingData::SortData()
 	//選択ソートを使用し、降順で入れ替える
 	for (int i = 0; i < 5; i++)
 	{
-		for (int j = 0; j < 6; j++)
+		for (int j = i + 1; j < 6; j++)
 		{
 			if (score[i] <= score[j])
 			{
